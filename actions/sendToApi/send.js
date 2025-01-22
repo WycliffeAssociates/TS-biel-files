@@ -8,7 +8,7 @@ async function process() {
   const repoTree = await octokit.rest.git.getTree({
     owner: github.context.payload.repository.owner.name,
     repo: github.context.payload.repository.name,
-    tree_sha: github.context.payload.tree_sha,
+    tree_sha: core.getInput("branch"),
     recursive: true,
     headers: {
       "User-Agent": "actions-sendToApi",

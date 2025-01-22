@@ -12,3 +12,6 @@ inputs:
   api-url:
     description: "URL of the api"
     required: true
+  branch:
+    description: "Branch"
+    required: true

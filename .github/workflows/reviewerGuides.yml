@@ -36,4 +36,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           api-url: ${{ env.API_URL }}
+          branch: ${{ github.ref_name }}
 # todo: haven't tested but pretty sure logic is sound on both ends, so just push to dev for both api and this
