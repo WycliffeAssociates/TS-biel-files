@@ -19,8 +19,8 @@ async function process() {
   });
   console.log(`Processings ${reviewersGuides.length} files`);
   const reduced = reviewersGuides.reduce((acc, file) => {
-    const ext = path.extname(file);
-    const baseName = path.basename(file, ext);
+    const ext = path.extname(file.path);
+    const baseName = path.basename(file.path, ext);
     if (!acc[baseName]) {
       acc[baseName] = {
         name: baseName,
