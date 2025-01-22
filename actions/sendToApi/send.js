@@ -14,6 +14,7 @@ async function process() {
       "User-Agent": "actions-sendToApi",
     },
   });
+  console.log(repoTree);
   const reviewersGuides = repoTree.data.tree.filter((file) => {
     return file.path.includes("/Reviewers' Guide" && file.type === "blob");
   });
@@ -49,7 +50,6 @@ async function process() {
   const arrOfObj = Object.values(reduced);
   const apiUrl = core.getInput("api-url");
   console.log(`Sending ${arrOfObj.length} files to ${apiUrl}`);
-  console.log(`Sending ${arrOfObj.length} files to ${apiUrl}`);
   const res = await fetch(`${apiUrl}/contentWithRendering`, {
     method: "POST",
     headers: {
@@ -58,6 +58,10 @@ async function process() {
     body: JSON.stringify(arrOfObj),
   });
   console.log(`Api res status: ${res.status}`);
+  if (res.status !== 200) {
+    throw new Error(`Api res status: ${res.status}and text: ${res.statusText}`);
+  }
+}
 
   //
   // schema for api is Array of
