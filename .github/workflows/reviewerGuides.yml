@@ -1,0 +1,39 @@
+name: Send RG to public data api
+
+on: [push, workflow_dispatch]
+
+jobs:
+  send-to-api:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: ${{ github.actor != 'github-actions[bot]' && github.event_name != 'push' || github.event.pusher.name != 'github-actions[bot]' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine environment
+        id: determine_env
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
+            echo "ENV=PROD" >> $GITHUB_OUTPUT
+          else
+            echo "ENV=DEV" >> $GITHUB_OUTPUT
+          fi
+      - name: Get Secrets
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          API_URL: "op://DevOps/Language_API_Function_endpoints/${{ steps.determine_env.outputs.ENV }}"
+
+      - name: install deps
+        run: npm ci
+
+      - name: Send reviewers guides
+        uses: ./actions/sendToApi
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          api-url: ${{ env.API_URL }}
+# todo: haven't tested but pretty sure logic is sound on both ends, so just push to dev for both api and this
