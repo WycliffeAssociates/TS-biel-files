@@ -61,7 +61,6 @@ async function process() {
   if (res.status !== 200) {
     throw new Error(`Api res status: ${res.status}and text: ${res.statusText}`);
   }
-}
 
   //
   // schema for api is Array of
