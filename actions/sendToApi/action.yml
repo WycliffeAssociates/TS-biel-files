@@ -1,0 +1,14 @@
+name: "reviewer's guide to api"
+description: "Send reviewer's guide to api"
+author: "Wk"
+
+runs:
+  using: "node20"
+  main: "send.js"
+inputs:
+  token:
+    description: "Repo Access Token"
+    required: true
+  api-url:
+    description: "URL of the api"
+    required: true
