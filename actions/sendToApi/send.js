@@ -9,6 +9,10 @@ async function process() {
     owner: github.context.payload.repository.owner.name,
     repo: github.context.payload.repository.name,
     tree_sha: github.context.payload.tree_sha,
+    recursive: true,
+    headers: {
+      "User-Agent": "actions-sendToApi",
+    },
   });
   const reviewersGuides = repoTree.data.tree.filter((file) =>
     file.path.includes("/Reviewers' Guide" && file.type === "blob")
