@@ -48,14 +48,20 @@ async function process() {
   }, {});
   const arrOfObj = Object.values(reduced);
   const apiUrl = core.getInput("api-url");
-  const res = await fetch(`${apiUrl}/contentWithRendering`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(arrOfObj),
-  });
-  console.log(`Api res status: ${res.status}`);
+  console.log(`Sending ${arrOfObj.length} content rows to ${apiUrl}`);
+  try {
+    const res = await fetch(`${apiUrl}/contentWithRendering`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(arrOfObj),
+    });
+    console.log(`Api res status: ${res.status}`);
+  } catch (error) {
+    console.error(error);
+  }
+
   //
   // schema for api is Array of
   /*
