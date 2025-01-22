@@ -6,7 +6,7 @@ async function process() {
   const accessToken = core.getInput("token");
   const octokit = github.getOctokit(accessToken);
   const repoTree = await octokit.rest.git.getTree({
-    owner: github.context.payload.repository.owner.login,
+    owner: github.context.payload.repository.owner.name,
     repo: github.context.payload.repository.name,
     tree_sha: github.context.payload.tree_sha,
   });
