@@ -14,11 +14,8 @@ async function process() {
       "User-Agent": "actions-sendToApi",
     },
   });
-  repoTree.data.tree.forEach((file) => {
-    console.log(file);
-  });
   const reviewersGuides = repoTree.data.tree.filter((file) => {
-    return file.path.includes("Reviewers' Guide" && file.type === "blob");
+    return file.path.includes("Reviewers' Guide") && file.type === "blob";
   });
   console.log(`Processings ${reviewersGuides.length} files`);
   const reduced = reviewersGuides.reduce((acc, file) => {
