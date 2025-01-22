@@ -14,10 +14,10 @@ async function process() {
       "User-Agent": "actions-sendToApi",
     },
   });
-  const reviewersGuides = repoTree.data.tree.filter((file) =>
-    file.path.includes("/Reviewers' Guide" && file.type === "blob")
-  );
-
+  const reviewersGuides = repoTree.data.tree.filter((file) => {
+    return file.path.includes("/Reviewers' Guide" && file.type === "blob");
+  });
+  console.log(`Processings ${reviewersGuides.length} files`);
   const reduced = reviewersGuides.reduce((acc, file) => {
     const ext = path.extname(file);
     const baseName = path.basename(file, ext);
@@ -48,19 +48,16 @@ async function process() {
   }, {});
   const arrOfObj = Object.values(reduced);
   const apiUrl = core.getInput("api-url");
-  console.log(`Sending ${arrOfObj.length} content rows to ${apiUrl}`);
-  try {
-    const res = await fetch(`${apiUrl}/contentWithRendering`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(arrOfObj),
-    });
-    console.log(`Api res status: ${res.status}`);
-  } catch (error) {
-    console.error(error);
-  }
+  console.log(`Sending ${arrOfObj.length} files to ${apiUrl}`);
+  console.log(`Sending ${arrOfObj.length} files to ${apiUrl}`);
+  const res = await fetch(`${apiUrl}/contentWithRendering`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(arrOfObj),
+  });
+  console.log(`Api res status: ${res.status}`);
 
   //
   // schema for api is Array of
