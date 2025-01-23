@@ -72,10 +72,9 @@ async function process() {
 
   const response = await fetch(LOGIN_URL, options);
   const data = await response.json();
-  console.log(data);
   const apiAccessToken = data.access_token;
   const apiUrl = core.getInput("api-url");
-  console.log(`Sending ${arrOfObj.length} files to pub data api`);
+  console.log(`Sending ${arrOfObj} files to pub data api`);
   const res = await fetch(`${apiUrl}/contentWithRendering`, {
     method: "POST",
     headers: {
