@@ -15,3 +15,15 @@ inputs:
   branch:
     description: "Branch"
     required: true
+  tenant:
+    description: "Tenant"
+    required: true
+  client-id:
+    description: "Client ID"
+    required: true
+  auth-secret:
+    description: "Auth Secret"
+    required: true
+  api-scope:
+    description: "API Scope"
+    required: true

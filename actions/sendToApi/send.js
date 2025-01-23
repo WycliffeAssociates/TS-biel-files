@@ -47,12 +47,40 @@ async function process() {
     return acc;
   }, {});
   const arrOfObj = Object.values(reduced);
+  if (arrOfObj.length === 0) {
+    console.log("No files to process");
+    return;
+  }
+  // Auth api
+  // put in 1p 'https://login.microsoftonline.com/wycliffeassociates.org/oauth2/v2.0/token';
+  const TENANT = core.getInput("tenant");
+  const CLIENT_ID = core.getInput("client-id");
+  const AUTH_SECRET = core.getInput("auth-secret");
+  const apiScope = core.getInput("api-scope");
+  const LOGIN_URL = `https://login.microsoftonline.com/${TENANT}/oauth2/v2.0/token`;
+  const options = {
+    method: "POST",
+    headers: {"content-type": "application/x-www-form-urlencoded"},
+    body: new URLSearchParams({
+      tenant: `${TENANT}`,
+      client_id: `${CLIENT_ID}`,
+      scope: `${apiScope}`,
+      client_secret: `${AUTH_SECRET}`,
+      grant_type: "client_credentials",
+    }),
+  };
+
+  const response = await fetch(LOGIN_URL, options);
+  const data = await response.json();
+  console.log(data);
+  const apiAccessToken = data.access_token;
   const apiUrl = core.getInput("api-url");
-  console.log(`Sending ${arrOfObj.length} files to ${apiUrl}`);
+  console.log(`Sending ${arrOfObj.length} files to pub data api`);
   const res = await fetch(`${apiUrl}/contentWithRendering`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${apiAccessToken}`,
     },
     body: JSON.stringify(arrOfObj),
   });

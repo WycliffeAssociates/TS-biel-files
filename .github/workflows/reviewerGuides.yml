@@ -27,6 +27,10 @@ jobs:
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           API_URL: "op://DevOps/Language_API_Function_endpoints/${{ steps.determine_env.outputs.ENV }}"
+          TENANT: "op://DevOps/Language_API_Function_endpoints/Shared_vars/TENANT"
+          CLIENT_ID: "op://DevOps/Language_API_Function_endpoints/Shared_vars/CLIENT_ID"
+          AUTH_SECRET: "op://DevOps/Language_API_Function_endpoints/Service_auth_secrets/${{ steps.determine_env.outputs.ENV }}"
+          SCOPE: "op://DevOps/Language_API_Function_endpoints/Shared_vars/SCOPE"
 
       - name: install deps
         run: npm ci
@@ -37,4 +41,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           api-url: ${{ env.API_URL }}
           branch: ${{ github.ref_name }}
-# todo: haven't tested but pretty sure logic is sound on both ends, so just push to dev for both api and this
+          tenant: ${{ env.TENANT }}
+          client-id: ${{ env.CLIENT_ID }}
+          auth-secret: ${{ env.AUTH_SECRET }}
+          api-scope: ${{ env.SCOPE }}
