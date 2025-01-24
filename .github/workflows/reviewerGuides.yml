@@ -1,6 +1,11 @@
 name: Send RG to public data api
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+      - dev
+  workflow_dispatch:
 
 jobs:
   send-to-api:
