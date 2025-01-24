@@ -37,7 +37,9 @@ async function process() {
     acc[baseName].renderings.push({
       namespace: "github",
       fileType: ext.substring(1).toLowerCase(),
-      url: `https://github.com/${github.context.payload.repository.full_name}/raw/master/${file.path}`,
+      url: encodeURI(
+        `https://github.com/${github.context.payload.repository.full_name}/raw/master/${file.path}`
+      ),
       fileSizeBytes: file.size,
       hash: file.sha,
       nonScripturalMeta: {
