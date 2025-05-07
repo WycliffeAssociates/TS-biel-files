@@ -1,37 +1,37 @@
 {
   "en": {
-    "COBT-T": "cobt-t",
-    "R&P": "Refinement and Presentation",
+    "COBT-T": "Chuch Owned Bible Translation Training",
+    "R&P": "Refinement and Publication",
     "T3-FD": "Train the Trainer",
-    "COBT-R": "cobt-r",
+    "COBT-R": "Chuch Owned Bible Translation Refinement",
     "CG": "Conversation Guide"
   },
   "es": {
-    "COBT-T": "cobt-t",
-    "R&P": "Refinamiento y Presentación",
-    "T3-FD": "Entrenamiento del Entrenador",
-    "COBT-R": "cobt-r",
-    "CG": "Guia de Conversaciones"
+    "COBT-T": "Entrenamiento de traducción bíblica propia",
+    "R&P": "Perfeccionamiento y publicación",
+    "T3-FD": "Formación de formadores",
+    "COBT-R": "Refinamiento de traducción bíblica propia",
+    "CG": "Guía de conversación"
   },
   "pt-br": {
-    "COBT-T": "cobt-t",
-    "R&P": "R&P",
-    "T3-FD": "T3-FD",
-    "COBT-R": "COBT-R",
-    "CG": "CG"
+    "COBT-T": "(Treinamento de Tradução da Bíblia pela Igreja)",
+    "R&P": "Refinação e Publicação",
+    "T3-FD": "Formação de Formadores",
+    "COBT-R": "Refinação da Tradução da Bíblia pela Igreja",
+    "CG": "Guia de Conversação"
   },
   "fr": {
-    "COBT-T": "cobt-t",
-    "R&P": "R&P",
-    "T3-FD": "T3-FD",
-    "COBT-R": "COBT-R",
-    "CG": "CG"
+    "COBT-T": "Formation de traduction biblique",
+    "R&P": "Refinement et publication",
+    "T3-FD": "Formation des formateurs",
+    "COBT-R": "Refinement de traduction biblique",
+    "CG": "Guide de conversation"
   },
   "id": {
-    "COBT-T": "cobt-t",
-    "R&P": "R&P",
-    "T3-FD": "T3-FD",
-    "COBT-R": "COBT-R",
-    "CG": "CG"
+    "COBT-T": "Pelatihan Penerjemahan Alkitab yang Dimiliki oleh Chuch",
+    "R&P": "Penyempurnaan dan Publikasi",
+    "T3-FD": "Melatih Pelatih",
+    "COBT-R": "Penyempurnaan Terjemahan Alkitab Milik Chuch",
+    "CG": "Panduan Percakapan"
   }
 }
